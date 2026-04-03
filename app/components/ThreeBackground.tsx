@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function ThreeBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -113,10 +113,11 @@ export default function ThreeBackground() {
       bgGroup.add(particlesMesh);
 
       // Animation Loop
-      const clock = new THREE.Clock();
+      const timer = new THREE.Timer();
       
       function animate() {
-        const elapsedTime = clock.getElapsedTime();
+        timer.update();
+        const elapsedTime = timer.getElapsed();
 
         // Idle animations
         if (!isMobile) {

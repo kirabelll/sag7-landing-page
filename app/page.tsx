@@ -1,6 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+// @ts-ignore - GSAP types are available but TypeScript can't find them
+import gsap from 'gsap';
+// @ts-ignore - GSAP types are available but TypeScript can't find them  
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'; 
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import ArcsSection from './components/ArcsSection';
@@ -15,9 +19,7 @@ export default function Home() {
   useEffect(() => {
     // Initialize smooth scrolling and animations
     const initializeApp = async () => {
-      const { default: Lenis } = await import('lenis');
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      const Lenis = (await import('lenis')).default;
 
       // Register GSAP plugins first
       gsap.registerPlugin(ScrollTrigger);

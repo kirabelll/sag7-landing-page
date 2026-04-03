@@ -1,6 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+// @ts-ignore - GSAP types are available but TypeScript can't find them
+import gsap from 'gsap';
+// @ts-ignore - GSAP types are available but TypeScript can't find them
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 const criteriaData = [
   {
@@ -38,13 +42,8 @@ const criteriaData = [
 export default function CriteriaSection() {
   useEffect(() => {
     const initializeCardAnimations = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      
-      // Register plugin if not already registered
-      if (!gsap.plugins.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
-      }
+      // Register plugin
+      gsap.registerPlugin(ScrollTrigger);
       
       // Subtle 3D tilt on cards via JS
       const cards = document.querySelectorAll('.criteria-card');
